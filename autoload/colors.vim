@@ -2,6 +2,12 @@ function! colors#update_colors()
   highlight! link SignColumn LineNr
   highlight! link Folded FoldColumn
   highlight! link VertSplit StatusLineNC
+  execute "highlight! stl_venv guifg=#719e07 gui=reverse guibg=White"
+  execute "highlight! stl_cwd guifg=#719e07 gui=bold,reverse guibg=Black"
+  execute "highlight! stl_git guifg=#b58900"
+  execute "highlight! stl_filename guifg=#268bd2"
+  execute "highlight! stl_lsp_ok guifg=#719e07 gui=bold "
+  execute "highlight! stl_lsp_err guifg=#dc322f gui=bold"
 endfunction
 
 let s:highlight_default_groups = [
@@ -31,4 +37,4 @@ function! s:base_colors()
   let all_colors = sort(all_colors)
   return all_colors
 endfunction
-  
+

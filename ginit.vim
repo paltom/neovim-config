@@ -13,7 +13,6 @@ set clipboard+=unnamed
 inoremap <expr> <c-v> edit#insert_mode_put()
 inoremap <c-g><c-v> <c-v>
 
-if !exists("g:loaded_ginit") " TODO: fix session loading
+if !v:vim_did_enter && empty(func#call_if_exists_or('xolox#session#find_current_session', [], ''))
   execute "cd ~"
 endif
-let g:loaded_ginit = v:true
