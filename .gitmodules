@@ -1,0 +1,9 @@
+[submodule "pack/session/start/vim-misc"]
+	path = pack/session/start/vim-misc
+	url = https://github.com/xolox/vim-misc
+[submodule "pack/session/start/vim-session"]
+	path = pack/session/start/vim-session
+	url = https://github.com/xolox/vim-session
+[submodule "pack/colorscheme/start/vim-one"]
+	path = pack/colorscheme/start/vim-one
+	url = https://github.com/rakr/vim-one
