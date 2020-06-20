@@ -13,3 +13,37 @@
 [submodule "pack/colorscheme/start/NeoSolarized"]
     path = pack/colorscheme/start/NeoSolarized
     url = https://github.com/overcache/NeoSolarized
+[submodule "pack/misc/start/vim-surround"]
+    path = pack/misc/start/vim-surround
+    url = https://github.com/tpope/vim-surround
+[submodule "pack/misc/start/pear-tree"]
+    path = pack/misc/start/pear-tree
+    url = https://github.com/tmsvg/pear-tree
+[submodule "pack/misc/start/vim-easy-align"]
+    path = pack/misc/start/vim-easy-align
+    url = https://github.com/junegunn/vim-easy-align
+[submodule "pack/misc/start/vim-sneak"]
+    path = pack/misc/start/vim-sneak
+    url = https://github.com/justinmk/vim-sneak
+[submodule "pack/misc/start/vim-commentary"]
+    path = pack/misc/start/vim-commentary
+    url = https://github.com/tpope/vim-commentary
+[submodule "pack/git/start/vim-fugitive"]
+    path = pack/git/start/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive
+    ignore = dirty
+[submodule "pack/git/start/vim-signify"]
+    path = pack/git/start/vim-signify
+    url = https://github.com/mhinz/vim-signify
+[submodule "pack/venv/start/vim-virtualenv"]
+    path = pack/venv/start/vim-virtualenv
+    url = https://github.com/jmcantrell/vim-virtualenv
+[submodule "pack/fuzzy-search/start/fzf"]
+    path = pack/fuzzy-search/start/fzf
+    url = https://github.com/junegunn/fzf
+[submodule "pack/fuzzy-search/start/fzf.vim"]
+    path = pack/fuzzy-search/start/fzf.vim
+    url = https://github.com/junegunn/fzf.vim
+[submodule "pack/colorscheme/start/nvim-colors-solarized"]
+    path = pack/colorscheme/start/nvim-colors-solarized
+    url = https://github.com/matsen/nvim-colors-solarized

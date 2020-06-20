@@ -21,10 +21,12 @@ function! statusline#filename()
   let bufname = bufname()
   let filename = fnamemodify(bufname, ":t")
   " Handle special cases
+  " filetype-based
   if index(["help"], &filetype) >= 0
     return filename
   endif
-  let full_bufname = fnamemodify(bufname, ":p")
+  const full_bufname = fnamemodify(bufname, ":p")
+  " git diff buffers
   if full_bufname =~# '\v^fugitive:'..expand("/")..'{2,}'
     let git_buf_type = matchstr(full_bufname,
           \ '\v'..escape('.git'..expand("/") , '\.')..'{2}\zs\x+\ze')
@@ -32,6 +34,13 @@ function! statusline#filename()
       let git_type_name = get(s:git_type_to_name, git_buf_type, "("..git_buf_type[:7]..")")
       return filename.." @ "..git_type_name
     endif
+  endif
+  " terminal buffers
+  if full_bufname =~# '\v^term://'
+    let splitted_term_uri = split(full_bufname, ":")
+    let shell_pid = fnamemodify(splitted_term_uri[1], ":t")
+    let shell_exec = fnamemodify(splitted_term_uri[-1], ":t")
+    return join([splitted_term_uri[0], shell_pid, shell_exec], ":")
   endif
   " XXX: add more special cases here
   " Handle buffer not associated with file

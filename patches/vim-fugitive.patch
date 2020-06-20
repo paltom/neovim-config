@@ -1,0 +1,26 @@
+Submodule pack/git/start/vim-fugitive contains modified content
+diff --git a/pack/git/start/vim-fugitive/autoload/fugitive.vim b/pack/git/start/vim-fugitive/autoload/fugitive.vim
+index 1106aea..dd62440 100644
+--- a/pack/git/start/vim-fugitive/autoload/fugitive.vim
++++ b/pack/git/start/vim-fugitive/autoload/fugitive.vim
+@@ -2588,6 +2588,10 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
+           \ 'PAGER': 'cat'}, 'keep')
+     let args = s:disable_colors + flags + ['-c', 'advice.waitingForEditor=false'] + args
+     let argv = s:UserCommandList({'git': git, 'dir': dir}) + args
++    if has("win32")
++      let ssl = &shellslash
++      set noshellslash
++    endif
+     let [argv, jobopts] = s:JobOpts(argv, env)
+     let state.cmd = argv
+     let g:_fugitive_last_job = state
+@@ -2608,6 +2612,9 @@ function! fugitive#Command(line1, line2, range, bang, mods, arg) abort
+             \ 'on_stdout': function('s:RunReceive', [state]),
+             \ 'on_stderr': function('s:RunReceive', [state]),
+             \ }))
++    if has("win32")
++      let &shellslash = ssl
++    endif
+     endif
+     let state.job = job
+     call s:RunWait(state, job)

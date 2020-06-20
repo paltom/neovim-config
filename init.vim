@@ -2,10 +2,37 @@
 " `bash` directory must be in $PATH
 set shell=bash.exe
 set shellcmdflag=-c
-set shellquote=\"
+set shellxquote=
 set shellslash
 
-tnoremap <c-w> <c-\><c-n><c-w>
+tnoremap <c-w> <c-\><c-n>
+augroup terminal
+  autocmd!
+  autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
+  autocmd TermOpen,WinEnter term://* let b:siso = &sidescrolloff | set sidescrolloff=0
+  autocmd WinLeave term://* let &sidescrolloff = b:siso
+  autocmd TermOpen,WinEnter term://* startinsert
+  autocmd WinLeave term://* stopinsert
+augroup end
+" }}}
+
+" Movements {{{
+nnoremap <a-h> <c-w>h
+nnoremap <a-j> <c-w>j
+nnoremap <a-k> <c-w>k
+nnoremap <a-l> <c-w>l
+inoremap <a-h> <c-\><c-n><c-w>h
+inoremap <a-j> <c-\><c-n><c-w>j
+inoremap <a-k> <c-\><c-n><c-w>k
+inoremap <a-l> <c-\><c-n><c-w>l
+vnoremap <a-h> <c-w>h
+vnoremap <a-j> <c-w>j
+vnoremap <a-k> <c-w>k
+vnoremap <a-l> <c-w>l
+tnoremap <a-h> <c-\><c-n><c-w>h
+tnoremap <a-j> <c-\><c-n><c-w>j
+tnoremap <a-k> <c-\><c-n><c-w>k
+tnoremap <a-l> <c-\><c-n><c-w>l
 " }}}
 
 " Searching {{{
@@ -22,6 +49,8 @@ vnoremap g/ /
 " }}}
 
 " Misc {{{
+set hidden
+
 let g:sneak#label = v:true
 
 let g:pear_tree_ft_disabled = [
@@ -72,6 +101,7 @@ set signcolumn=yes
 let g:signify_sign_change = '~'
 
 let g:one_allow_italics = v:true
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 augroup colorscheme_fixes
   autocmd!
   autocmd ColorScheme * call colors#update_colors()
@@ -111,7 +141,7 @@ function! Statusline()
   let stl ..= "%#stl_cwd#"
   let stl ..= "%{statusline#cwd()} "
   let stl ..= "%#stl_git#"
-  let stl ..= "%( (%{func#call_if_exists_or('FugitiveHead', [8], '')})%)"
+  let stl ..= "%( (%{pathshorten(func#call_if_exists_or('FugitiveHead', [8], ''))})%)"
   let stl ..= "%(%{func#call_if_exists_or('sy#repo#get_stats_decorated', [], '')}%)"
   let stl ..= "%#stl_filename#"
   let stl ..= " %{statusline#filename()} %m%r"
