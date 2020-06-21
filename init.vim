@@ -1,3 +1,6 @@
+let mapleader = " "
+let maplocalleader = " "
+
 " Shell {{{
 " `bash` directory must be in $PATH
 " set shell=bash.exe
@@ -193,6 +196,44 @@ let g:session_default_to_last = v:true
 "  autocmd!
 "  autocmd Filetype java setlocal omnifunc=v:lua.vim.lsp.omnifunc
 "augroup end
+" Using coc.nvim
+inoremap <silent><expr> <c-space> coc#refresh()
+nmap <silent> [d <plug>(coc-diagnostic-prev)
+nmap <silent> ]d <plug>(coc-diagnostic-next)
+nmap <silent> <leader>gd <plug>(coc-definition)
+nmap <silent> <leader>gt <plug>(coc-type-definition)
+nmap <silent> <leader>gi <plug>(coc-implementation)
+nmap <silent> <leader>gr <plug>(coc-references)
+function! s:show_documentation()
+  if index(["vim", "help"], &filetype) >= 0
+    execute "help "..expand("<cword>")
+  else
+    call CocAction("doHover")
+  endif
+endfunction
+nnoremap <silent> K <cmd>call <sid>show_documentation()<cr>
+xmap <leader>f <plug>(coc-format-selected)
+nmap <leader>f <plug>(coc-format-selected)
+nmap <leader>f. ^<plug>(coc-format-selected)$
+xmap <leader>a <plug>(coc-codeaction-selected)
+nmap <leader>a <plug>(coc-codeaction-selected)
+nmap <leader>a. ^<plug>(coc-codeaction-selected)$
+nmap <leader>A <plug>(coc-codeaction)
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+command! -nargs=0 CocFormat call CocAction("format")
+function! s:coc_fold_completions(...)
+  return join(["comment", "imports", "region"], "\n")
+endfunction
+command! -nargs=? -complete=custom,<sid>coc_fold_completions CocFold call CocAction('fold', <f-args>)
 " }}}
 
 " vim:foldmethod=marker
