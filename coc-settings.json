@@ -1,5 +1,6 @@
 {
     "suggest.disableMenu": true,
     "suggest.autoTrigger": "trigger",
-    "diagnostic.errorSign": "E>"
+    "diagnostic.errorSign": "E>",
+    "explorer.openAction.strategy": "sourceWindow"
 }

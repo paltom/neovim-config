@@ -197,6 +197,12 @@ let g:session_default_to_last = v:true
 "  autocmd Filetype java setlocal omnifunc=v:lua.vim.lsp.omnifunc
 "augroup end
 " Using coc.nvim
+let g:coc_global_extensions = [
+      \ "coc-json",
+      \ "coc-java",
+      \ "coc-vimlsp",
+      \ "coc-explorer",
+      \]
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> [d <plug>(coc-diagnostic-prev)
 nmap <silent> ]d <plug>(coc-diagnostic-next)
