@@ -47,3 +47,6 @@
 [submodule "pack/colorscheme/start/nvim-colors-solarized"]
     path = pack/colorscheme/start/nvim-colors-solarized
     url = https://github.com/matsen/nvim-colors-solarized
+[submodule "pack/lsp/start/nvim-lsp"]
+	path = pack/lsp/start/nvim-lsp
+	url = https://github.com/neovim/nvim-lsp

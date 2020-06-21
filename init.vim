@@ -187,7 +187,12 @@ let g:session_default_to_last = v:true
 " }}}
 
 " LSP {{{
-" TODO
+"packadd nvim-lsp
+"lua require'nvim_lsp'.eclipse_jdt_ls.setup{}
+"augroup lsp_omnifunc
+"  autocmd!
+"  autocmd Filetype java setlocal omnifunc=v:lua.vim.lsp.omnifunc
+"augroup end
 " }}}
 
 " vim:foldmethod=marker
