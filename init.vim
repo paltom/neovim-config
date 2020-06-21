@@ -1,9 +1,10 @@
 " Shell {{{
 " `bash` directory must be in $PATH
-set shell=bash.exe
-set shellcmdflag=-c
-set shellxquote=
-set shellslash
+" set shell=bash.exe
+" set shellcmdflag=-c
+" let &shellpipe = '2>&1 | tee'
+" set shellxquote=
+" set shellslash
 
 tnoremap <c-w> <c-\><c-n>
 augroup terminal
@@ -46,6 +47,13 @@ augroup highlight_while_searching_only
 augroup end
 vnoremap / y/<c-r>"<cr>
 vnoremap g/ /
+
+let g:fzf_layout = {"window": "botright 12 split enew"}
+let g:fzf_action = {
+      \ "ctrl-t": "tab split",
+      \ "ctrl-s": "split",
+      \ "ctrl-v": "vsplit",
+      \}
 " }}}
 
 " Misc {{{
@@ -179,6 +187,7 @@ let g:session_default_to_last = v:true
 " }}}
 
 " LSP {{{
+" TODO
 " }}}
 
 " vim:foldmethod=marker

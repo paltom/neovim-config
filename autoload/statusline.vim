@@ -3,7 +3,7 @@ function! statusline#cwd()
 endfunction
 
 function! s:relative_path(path, basepath)
-  let full_basepath = fnamemodify(a:basepath, ":p")
+  let full_basepath = escape(fnamemodify(a:basepath, ":p"), '\')
   let relative_path = matchstr(a:path, '\v'..full_basepath..'\zs.*$')
   if empty(relative_path)
     return a:path
