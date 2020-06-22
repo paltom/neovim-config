@@ -27,9 +27,9 @@ function! statusline#filename()
   endif
   const full_bufname = fnamemodify(bufname, ":p")
   " git diff buffers
-  if full_bufname =~# '\v^fugitive:'..expand("/")..'{2,}'
+  if full_bufname =~# '\v^fugitive:'..escape(expand("/"), '\')..'{2,}'
     let git_buf_type = matchstr(full_bufname,
-          \ '\v'..escape('.git'..expand("/") , '\.')..'{2}\zs\x+\ze')
+          \ '\v'..escape('.git'..expand("/"), '.\')..'{2}\zs\x+\ze')
     if !empty(git_buf_type)
       let git_type_name = get(s:git_type_to_name, git_buf_type, "("..git_buf_type[:7]..")")
       return filename.." @ "..git_type_name

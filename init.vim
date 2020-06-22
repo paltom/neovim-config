@@ -124,12 +124,13 @@ set numberwidth=5
 set signcolumn=yes
 let g:signify_sign_change = '~'
 
-let g:one_allow_italics = v:true
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 augroup colorscheme_fixes
   autocmd!
   autocmd ColorScheme * call colors#update_colors()
 augroup end
+let g:one_allow_italics = v:true
+let g:neosolarized_italic = v:true
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 colorscheme NeoSolarized
 set background=dark
 let &fillchars = "vert: "
@@ -200,7 +201,7 @@ function! s:tabpage_label(tabpagenr)
   let label ..= "%"..a:tabpagenr."T "
   let label ..= "%{tabline#modified("..a:tabpagenr..")} "
   let label ..= "%{tabline#filename("..a:tabpagenr..")} "
-  let label ..= "["..a:tabpagenr.."]"
+  let label ..= a:tabpagenr.."|"
   return label
 endfunction
 function! Tabline()
@@ -267,6 +268,7 @@ nmap <leader>f <plug>(coc-format-selected)
 xmap <leader>a <plug>(coc-codeaction-selected)
 nmap <leader>a <plug>(coc-codeaction-selected)
 nmap <leader>A <plug>(coc-codeaction)
+nmap <leader>oi <cmd>CocCommand editor.action.organizeImport<cr>
 
 xmap if <plug>(coc-funcobj-i)
 omap if <plug>(coc-funcobj-i)
