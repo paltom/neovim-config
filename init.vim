@@ -63,6 +63,7 @@ augroup end
 vnoremap / y/<c-r>"<cr>
 vnoremap g/ /
 
+" XXX: fzf binary need to be installed manually on Windows
 let g:fzf_layout = {"window": "botright 12 split enew"}
 let g:fzf_action = {
       \ "ctrl-t": "tab split",
@@ -209,6 +210,7 @@ let g:session_default_to_last = v:true
 "  autocmd Filetype java setlocal omnifunc=v:lua.vim.lsp.omnifunc
 "augroup end
 " Using coc.nvim
+" XXX: Need to be installed manually
 let g:coc_global_extensions = [
       \ "coc-json",
       \ "coc-java",
