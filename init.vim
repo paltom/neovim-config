@@ -190,6 +190,29 @@ augroup statusline
   autocmd WinEnter,BufWinEnter * setlocal statusline=%!Statusline()
   autocmd WinLeave * setlocal statusline=%!StatuslineNC()
 augroup end
+
+function! s:tabpage_label(tabpagenr)
+  if a:tabpagenr == tabpagenr()
+    let label = "%#TablineSel#"
+  else
+    let label = "%#Tabline#"
+  endif
+  let label ..= "%"..a:tabpagenr."T "
+  let label ..= "%{tabline#modified("..a:tabpagenr..")} "
+  let label ..= "%{tabline#filename("..a:tabpagenr..")} "
+  let label ..= "["..a:tabpagenr.."]"
+  return label
+endfunction
+function! Tabline()
+  let tbl = ""
+  for tabpagenr in range(1, tabpagenr("$"))
+    let tbl ..= s:tabpage_label(tabpagenr)
+  endfor
+  let tbl ..= "%#TablineFill#"
+  let tbl ..= "%="
+  return tbl
+endfunction
+set tabline=%!Tabline()
 " }}}
 
 " Sessions {{{
