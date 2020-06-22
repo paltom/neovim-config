@@ -37,6 +37,18 @@ tnoremap <a-h> <c-\><c-n><c-w>h
 tnoremap <a-j> <c-\><c-n><c-w>j
 tnoremap <a-k> <c-\><c-n><c-w>k
 tnoremap <a-l> <c-\><c-n><c-w>l
+
+if has("nvim-0.4.2")
+  set wildcharm=<tab>
+  cnoremap <expr> <left>  wildmenumode() ? "\<up>"    : "\<left>"
+  cnoremap <expr> <right> wildmenumode() ? "\<down>"  : "\<right>"
+  cnoremap <expr> <up>    wildmenumode() ? "\<left>"  : "\<up>"
+  cnoremap <expr> <down>  wildmenumode() ? "\<right>" : "\<down>"
+  cnoremap <expr> <c-h>   wildmenumode() ? "\<up>"    : "\<c-h>"
+  cnoremap <expr> <c-l>   wildmenumode() ? "\<down>"  : "\<c-l>"
+  cnoremap <expr> <c-k>   wildmenumode() ? "\<left>"  : "\<c-k>"
+  cnoremap <expr> <c-j>   wildmenumode() ? "\<right>" : "\<c-j>"
+endif
 " }}}
 
 " Searching {{{
