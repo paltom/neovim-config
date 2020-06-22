@@ -50,3 +50,6 @@
 [submodule "pack/lsp/opt/nvim-lsp"]
     path = pack/lsp/opt/nvim-lsp
     url = https://github.com/neovim/nvim-lsp
+[submodule "pack/workspace/start/vim-projectionist"]
+	path = pack/workspace/start/vim-projectionist
+	url = https://github.com/tpope/vim-projectionist

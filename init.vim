@@ -216,8 +216,15 @@ let g:coc_global_extensions = [
       \ "coc-java",
       \ "coc-vimlsp",
       \ "coc-explorer",
+      \ "coc-xml",
       \]
 inoremap <silent><expr> <c-space> coc#refresh()
+let g:coc_snippet_next = "<tab>"
+let g:coc_snippet_prev = "<s-tab>"
+inoremap <silent><expr> <tab>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump', ''])\<cr>" :
+      \ "\<tab>"
 nmap <silent> [d <plug>(coc-diagnostic-prev)
 nmap <silent> ]d <plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <plug>(coc-definition)
@@ -234,10 +241,8 @@ endfunction
 nnoremap <silent> K <cmd>call <sid>show_documentation()<cr>
 xmap <leader>f <plug>(coc-format-selected)
 nmap <leader>f <plug>(coc-format-selected)
-nmap <leader>f. ^<plug>(coc-format-selected)$
 xmap <leader>a <plug>(coc-codeaction-selected)
 nmap <leader>a <plug>(coc-codeaction-selected)
-nmap <leader>a. ^<plug>(coc-codeaction-selected)$
 nmap <leader>A <plug>(coc-codeaction)
 
 xmap if <plug>(coc-funcobj-i)
