@@ -239,8 +239,8 @@ let g:coc_global_extensions = [
       \ "coc-json",
       \ "coc-java",
       \ "coc-vimlsp",
-      \ "coc-explorer",
       \ "coc-xml",
+      \ "coc-tsserver",
       \]
 inoremap <silent><expr> <c-space> coc#refresh()
 let g:coc_snippet_next = "<tab>"
@@ -263,8 +263,8 @@ function! s:show_documentation()
   endif
 endfunction
 nnoremap <silent> K <cmd>call <sid>show_documentation()<cr>
-xmap <leader>f <plug>(coc-format-selected)
-nmap <leader>f <plug>(coc-format-selected)
+xmap <silent><leader>f <plug>(coc-format-selected)
+nmap <silent><leader>f <plug>(coc-format-selected)
 xmap <leader>a <plug>(coc-codeaction-selected)
 nmap <leader>a <plug>(coc-codeaction-selected)
 nmap <leader>A <plug>(coc-codeaction)
