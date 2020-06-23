@@ -241,6 +241,8 @@ let g:coc_global_extensions = [
       \ "coc-vimlsp",
       \ "coc-xml",
       \ "coc-tsserver",
+      \ "coc-html",
+      \ "coc-css",
       \]
 inoremap <silent><expr> <c-space> coc#refresh()
 let g:coc_snippet_next = "<tab>"
