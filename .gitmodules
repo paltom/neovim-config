@@ -53,3 +53,6 @@
 [submodule "pack/workspace/start/vim-projectionist"]
 	path = pack/workspace/start/vim-projectionist
 	url = https://github.com/tpope/vim-projectionist
+[submodule "pack/explorer/start/nerdtree"]
+	path = pack/explorer/start/nerdtree
+	url = https://github.com/preservim/nerdtree

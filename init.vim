@@ -286,4 +286,12 @@ endfunction
 command! -nargs=? -complete=custom,<sid>coc_fold_completions CocFold call CocAction('fold', <f-args>)
 " }}}
 
+" Explorer {{{
+nnoremap <leader>E <cmd>NERDTreeToggleVCS<cr>
+let g:NERDTreeWinSize = 40
+let g:NERDTreeMapOpenVSplit = 'v'
+let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeQuitOnOpen = 1
+" }}}
+
 " vim:foldmethod=marker
