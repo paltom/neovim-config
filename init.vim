@@ -8,16 +8,46 @@ let maplocalleader = " "
 " let &shellpipe = '2>&1 | tee'
 " set shellxquote=
 " set shellslash
-
 tnoremap <c-w> <c-\><c-n>
 augroup terminal
   autocmd!
   autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no
-  autocmd TermOpen,WinEnter term://* let b:siso = &sidescrolloff | set sidescrolloff=0
-  autocmd WinLeave term://* let &sidescrolloff = b:siso
+  autocmd TermOpen,BufEnter,WinEnter term://* let b:siso = &sidescrolloff | set sidescrolloff=0
+  autocmd BufLeave,WinLeave term://* let &sidescrolloff = b:siso
   autocmd TermOpen,WinEnter term://* startinsert
-  autocmd WinLeave term://* stopinsert
+  autocmd TermLeave,BufLeave,WinLeave term://* stopinsert
 augroup end
+" }}}
+
+" Providers {{{
+" python {{{
+set pyxversion=3
+let g:loaded_python_provider = v:false
+let g:python3_host_prog = expand(
+      \ fnamemodify(expand("$MYVIMRC"), ":h")..
+      \ "/pyenv/python3/Scripts/python.exe")
+function! s:term_activate_venv()
+  if exists("$VIRTUAL_ENV")
+    let venv_path = fnamemodify(expand("$VIRTUAL_ENV"), ":p")
+    let cmd = join(split(bufname(), ":")[2:-1], ":")
+    if has("win32")
+      let activation_script = expand(venv_path.."/Scripts/activate")
+      if cmd =~# '\vsh(\.|$)'
+        let activation_cmd = "\<c-e>\<c-u>source "..substitute(activation_script, '\', '/', "g")
+      elseif cmd
+        let activation_cmd = activation_script..".bat"
+      endif
+    endif
+    if exists("activation_cmd")
+      call chansend(getbufvar("%", "terminal_job_id"), activation_cmd.."\<cr>")
+    endif
+  endif
+endfunction
+augroup venv_activation
+  autocmd!
+  autocmd TermOpen *[^{FZF$}] call s:term_activate_venv()
+augroup end
+" }}}
 " }}}
 
 " Movements {{{
@@ -70,6 +100,10 @@ let g:fzf_action = {
       \ "ctrl-s": "split",
       \ "ctrl-v": "vsplit",
       \}
+
+" easier jumping through searches
+nnoremap <silent> ]s :<c-u>call search#jump("forward")<cr>
+nnoremap <silent> [s :<c-u>call search#jump("backward")<cr>
 " }}}
 
 " Misc {{{
@@ -243,6 +277,7 @@ let g:coc_global_extensions = [
       \ "coc-tsserver",
       \ "coc-html",
       \ "coc-css",
+      \ "coc-python",
       \]
 inoremap <silent><expr> <c-space> coc#refresh()
 let g:coc_snippet_next = "<tab>"
@@ -286,6 +321,10 @@ function! s:coc_fold_completions(...)
   return join(["comment", "imports", "region"], "\n")
 endfunction
 command! -nargs=? -complete=custom,<sid>coc_fold_completions CocFold call CocAction('fold', <f-args>)
+augroup coc_disabled
+  autocmd!
+  autocmd TermOpen * let b:coc_enabled = 0
+augroup end
 " }}}
 
 " Explorer {{{
@@ -294,6 +333,11 @@ let g:NERDTreeWinSize = 40
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeQuitOnOpen = 1
+" }}}
+
+" Git {{{
+nnoremap <silent> <leader>hd <cmd>SignifyHunkDiff<cr>
+nnoremap <silent> <leader>hu <cmd>SignifyHunkUndo<cr>
 " }}}
 
 " vim:foldmethod=marker

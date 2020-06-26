@@ -2,3 +2,4 @@
 /.metadata/
 /pack/lsp/start/coc.nvim-release/
 /.netrwhist
+/pyenv/
