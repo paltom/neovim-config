@@ -158,14 +158,10 @@ set numberwidth=5
 set signcolumn=yes
 let g:signify_sign_change = '~'
 
-augroup colorscheme_fixes
-  autocmd!
-  autocmd ColorScheme * call colors#update_colors()
-augroup end
 let g:one_allow_italics = v:true
 let g:neosolarized_italic = v:true
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-colorscheme NeoSolarized
+colorscheme MyNeoSolarized
 set background=dark
 let &fillchars = "vert: "
 
