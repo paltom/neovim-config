@@ -1,5 +1,17 @@
 {
     "suggest.disableMenu": true,
     "suggest.autoTrigger": "trigger",
-    "diagnostic.errorSign": "E>"
+    "diagnostic.errorSign": "E>",
+    "languageserver": {
+        "clojure-lsp": {
+            "command": "clojure-lsp.bat",
+            //"args": ["-c", "clojure-lsp"],
+            "filetypes": ["clojure"],
+            "rootPatterns": ["project.clj", ".git"],
+            "additionalSchemes": ["jar", "zipfile"],
+            "trace.server": "verbose",
+            "initializationOptions": {
+            }
+        }
+    }
 }
