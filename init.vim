@@ -332,8 +332,8 @@ let g:NERDTreeQuitOnOpen = 1
 " }}}
 
 " Git {{{
-nnoremap <silent> <leader>hd <cmd>SignifyHunkDiff<cr>
-nnoremap <silent> <leader>hu <cmd>SignifyHunkUndo<cr>
+nnoremap <silent> cd <cmd>SignifyHunkDiff<cr>
+nnoremap <silent> cu <cmd>SignifyHunkUndo<cr>
 " }}}
 
 " vim:foldmethod=marker
