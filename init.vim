@@ -284,10 +284,10 @@ inoremap <silent><expr> <tab>
       \ "\<tab>"
 nmap <silent> [d <plug>(coc-diagnostic-prev)
 nmap <silent> ]d <plug>(coc-diagnostic-next)
-nmap <silent> <leader>gd <plug>(coc-definition)
-nmap <silent> <leader>gt <plug>(coc-type-definition)
-nmap <silent> <leader>gi <plug>(coc-implementation)
-nmap <silent> <leader>gr <plug>(coc-references)
+nmap <silent> gd <plug>(coc-definition)
+nmap <silent> gy <plug>(coc-type-definition)
+nmap <silent> gi <plug>(coc-implementation)
+nmap <silent> gr <plug>(coc-references)
 function! s:show_documentation()
   if index(["vim", "help"], &filetype) >= 0
     execute "help "..expand("<cword>")
